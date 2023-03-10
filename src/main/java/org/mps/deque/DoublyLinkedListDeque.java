@@ -1,5 +1,12 @@
 package org.mps.deque;
 
+/**
+ *
+ * @author Nicolás Lerible
+ * @author Jesús Ariza
+ *
+ */
+
 public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
     private DequeNode<T> first;
