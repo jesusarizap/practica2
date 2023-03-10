@@ -7,14 +7,12 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
     private int size;
 
     public DoublyLinkedListDeque(DequeNode<T> first, DequeNode<T> last) {
-        // TODO
         this.first = first;
         this.last = last;
     }
 
     @Override
     public void prepend(T value) {
-        // TODO
         if (this.first==null){  // Si la lista esta vacia
             // Creo un nuevo nodo
             DequeNode<T> newNode = new DequeNode<>(value,null, null);
@@ -34,7 +32,6 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
     @Override
     public void append(T value) {
-        // TODO
         if (this.first==null){  // Si la lista esta vacia
             // Creo un nuevo nodo
             DequeNode<T> newNode = new DequeNode<>(value,null, null);
@@ -54,29 +51,32 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
     @Override
     public void deleteFirst() {
-        // TODO
-        if (this.first==null){
+        if (this.first==null){ // Si la lista esta vacia
+            // Devuelve excepcion
             throw new DoubleEndedQueueException("Can not delete first element form an empty list");
-        } else {
+        } else { // Si la lista contiene al menos un nodo
+            // Asigna el siguiente nodo como primero
             this.first = this.first.getNext();
-            this.first.setNext(null);
+            // Asigno que este nodo ya no tiene antecesor
+            this.first.setPrevious(null);
         }
     }
 
     @Override
     public void deleteLast() {
-        // TODO
-        if (this.last==null){
+        if (this.last==null){ // Si la lista esta vacia
+            // Devuelve excepcion
             throw new DoubleEndedQueueException("Can not delete last element form an empty list");
-        } else {
+        } else { // Si contiene al menos un nodo
+            // Asigno el anterior nodo como ultimo
             this.last = this.last.getPrevious();
+            // Asigno que este nodo no tiene sucesor
             this.last.setNext(null);
         }
     }
 
     @Override
     public T first() {
-        // TODO
         if (this.first==null){
             throw new DoubleEndedQueueException("The list is empty");
         } else {
@@ -86,7 +86,6 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
     @Override
     public T last() {
-        // TODO
         if (this.last==null){
             throw new DoubleEndedQueueException("The list is empty");
         } else {
@@ -96,7 +95,6 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
     @Override
     public int size() {
-        // TODO
         if (this.first==null){
             return 0;
         } else {
