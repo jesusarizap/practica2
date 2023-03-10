@@ -3,38 +3,38 @@ package org.mps.deque;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class DoublyLinkedListDequeTest {
+/**
+ * @author Nicolás Lerible
+ * @author Jesús Ariza
+ * Casos de prueba para DoublyLinkedListDeque():
+ *
+ *  1. Test cases for the DoublyLinkedListDeque implementation that checks if
+ *      1.1. an empty list
+ *          1.1.2. has size 0
+ *          1.1.3. adds correctly an element at the
+ *              1.1.3.1. beginning
+ *              1.1.3.2. beginning and increments its size
+ *              1.1.3.3. end
+ *              1.1.3.4. end and increments its size
+ *          1.1.4. returns DoubleEndedQueueException when
+ *              1.1.4.1. throws an exception when looking for the first element
+ *              1.1.4.2. throws an exception when looking for the last element
+ *              1.1.4.3. deleteFirst()
+ *              1.1.4.4. deleteLast()
+ *      1.2. a list with an element
+ *          1.2.1. has first element
+ *          1.2.2. has last element
+ *          1.2.3. returns its actual size
+ *          1.2.4. returns its actual size after adding an element
+ *          1.2.5. adds correctly an element at the
+ *              1.2.5.1. beginning
+ *              1.2.5.2. end
+ *          1.2.6. deletes correctly an element at the
+ *              1.2.6.1. beginning
+ *              1.2.6.2. end
+ */
 
-    /**
-     * @author Nicolás Lerible
-     * @author Jesús Ariza
-     * Casos de prueba para DoublyLinkedListDeque():
-     *
-     *  1. Test cases for the DoublyLinkedListDeque implementation that checks if
-     *      1.1. an empty list
-     *          1.1.2. has size 0
-     *          1.1.3. adds correctly an element at the
-     *              1.1.3.1. beginning
-     *              1.1.3.2. beginning and increments its size
-     *              1.1.3.3. end
-     *              1.1.3.4. end and increments its size
-     *          1.1.4. returns DoubleEndedQueueException when
-     *              1.1.4.1. throws an exception when looking for the first element
-     *              1.1.4.2. throws an exception when looking for the last element
-     *              1.1.4.3. deleteFirst()
-     *              1.1.4.4. deleteLast()
-     *      1.2. a list with an element
-     *          1.2.1. has first element
-     *          1.2.2. has last element
-     *          1.2.3. returns its actual size
-     *          1.2.4. returns its actual size after adding an element
-     *          1.2.5. adds correctly an element at the
-     *              1.2.5.1. beginning
-     *              1.2.5.2. end
-     *          1.2.6. deletes correctly an element at the
-     *              1.2.6.1. beginning
-     *              1.2.6.2. end
-     */
+public class DoublyLinkedListDequeTest {
 
     DoublyLinkedListDeque<Integer> deque;
 
