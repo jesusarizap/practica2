@@ -4,9 +4,24 @@ import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-//Hay que hacer tests para los getters aun cuando estos ya quedan probados en tests como lo de item, next node y previous node?
-
 public class DequeNodeTest {
+
+    /**
+    * Casos de prueba para DequeNode
+    *
+    *   1. Test cases for the DequeNode implementation that checks if
+    *       1.1. a created node stores properly its
+    *           1.1.1. item
+    *           1.1.2. previous node
+    *           1.1.3. next node
+    *       1.2. the position of a node is checked correctly when
+    *           1.2.1. it is the first node
+    *           1.2.2. it is the last node
+    *           1.2.3. it is a terminal node and its the
+    *               1.2.3.1. first node
+    *               1.2.3.2. last node
+    *           1.2.4. it is not a terminal node
+    **/
 
     DequeNode<Integer> nodo;
 
