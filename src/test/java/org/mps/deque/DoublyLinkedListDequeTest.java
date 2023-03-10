@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class DoublyLinkedListDequeTest {
 
     /**
+     * @author Nicolás Lerible
+     * @author Jesús Ariza
      * Casos de prueba para DoublyLinkedListDeque():
      *
      *  1. Test cases for the DoublyLinkedListDeque implementation that checks if
