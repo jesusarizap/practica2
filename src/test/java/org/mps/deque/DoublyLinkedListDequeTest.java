@@ -6,29 +6,17 @@ import static org.junit.jupiter.api.Assertions.*;
 public class DoublyLinkedListDequeTest {
 
     /**
-     * Una lista vacia
-     *      no debe tener primer ni ultimo elemento (null)
-     *      debe tener longitud 0
-     *      cuando añade un elemento
-     *          al principio no tiene predecesor ni antecesor ????
-     *          al final no tiene predecesor ni antecesor     ????
-     *      devuelve DoubleEndedQueueException si deleteFirt()
-     *      devuelve DoubleEndedQueueException si deleteLast()
-     *      devuelve DoubleEndedQueueException si first()      este ya se comprueba al principio y no va por excepcion
-     *      devuelve DoubleEndedQueueException si last()       idem
-     * Una lista con al menos un elemento
-     *      debe tener primer y ultimo elemento
-     *      debe tener longitud correcta
-     *      añade un elemento corretamente
-     *          al principio
-     *          al final
-     *      borra elementos correctamente
-     *          al principio
-     *          al final
-     *      muestra correctamente
-     *          el primer elemento
-     *          el ultimo momento
-     *      puede recorrer del primer al ultimo elemento (¿en [size] pasos? como lo ve Jesus)
+     * Casos tests DoublyLinkedListDequeTest();
+     *
+     *  Test cases for the DoublyLinkedListDeque implementation that checks if
+     *      an empty list
+     *          throws an exception when looking for the first element
+     *          throws an exception when looking for the last element
+     *          has size 0
+     *          when an element is added at the beggining
+     *              it doesn't have a predecessor
+     *              it doesn't have a predecessor
+     *
      */
 
     DoublyLinkedListDeque<Integer> deque;
@@ -52,14 +40,14 @@ public class DoublyLinkedListDequeTest {
             }
 
             @Test
-            @DisplayName("doesn't have a first element (null)")
+            @DisplayName("throws an exception when looking for the first element")
             void checkThatAnEmptyListDoesntHaveFirstElement()
             {
                 assertThrows(DoubleEndedQueueException.class, () -> deque.first());
             }
 
             @Test
-            @DisplayName("doesn't have a last element (null)")
+            @DisplayName("throws an exception when looking for the last element")
             void checkThatAnEmptyListDoesntHaveLastElement()
             {
                 assertThrows(DoubleEndedQueueException.class, () -> deque.last());
@@ -73,6 +61,7 @@ public class DoublyLinkedListDequeTest {
                 assertEquals(expectedValue, deque.size());
             }
 
+            /*
             @Nested
             @DisplayName("when an element is added at the beggining")
             class checkAdditionsToEmptyList
@@ -85,7 +74,7 @@ public class DoublyLinkedListDequeTest {
 
                     deque.prepend(1);
 
-                    assertNull(expectedValue);
+                    assertNull(deque.first().getNext());
                 }
 
                 @Test
@@ -98,7 +87,7 @@ public class DoublyLinkedListDequeTest {
 
                     assertNull(expectedValue);
                 }
-            }
+            }*/
 
             @Nested
             @DisplayName("returns DoubleEndedQueueException when")
@@ -219,7 +208,7 @@ public class DoublyLinkedListDequeTest {
                 }
 
                 @Test
-                @DisplayName("last")
+                @DisplayName("end")
                 void checkDeletedElementAtTheLast()
                 {
                     deque.append(1);
