@@ -181,6 +181,10 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
         DequeNode<T> nodeTwo;
         T auxValue;
 
+        if (size()<2){
+            return;
+        }
+
         while (nodeOne!=null) {
             nodeTwo = nodeOne.getNext();
             while (nodeTwo!=null){
