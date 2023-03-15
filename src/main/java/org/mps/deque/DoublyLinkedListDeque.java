@@ -1,5 +1,7 @@
 package org.mps.deque;
 
+import java.util.Comparator;
+
 /**
  *
  * @author Nicolás Lerible
@@ -113,5 +115,88 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
             }
             return contador;
         }
+    }
+
+    @Override
+    public T get(int index) {
+
+        DequeNode<T> auxNode = this.first;
+
+        if (index<0||index>=size) { // if index is out of bounds
+            throw new IndexOutOfBoundsException("The inserted index is out of the list");
+        } else { // if index is within bounds
+            for (int i=0;i<=index;i++) { // goes to the intended node
+                auxNode = auxNode.getNext();
+            }
+        }
+
+        return auxNode.getItem();
+    }
+
+    @Override
+    public boolean contains(T value) {
+
+        DequeNode<T> auxNode = this.first;
+
+        while(auxNode!=null) { // while actual node is not null
+            if (auxNode.getItem().equals(value)){ // if the value is the same
+                return true;
+            }
+            auxNode = auxNode.getNext();
+
+        } // otherwise
+
+        return false;
+    }
+
+    @Override
+    public void remove(T value) {
+
+        DequeNode<T> auxNode = this.first;
+
+        while(auxNode!=null) { // while actual node is not null
+            if (auxNode.getItem().equals(value)){ // if the value is the same
+                if (auxNode.isFirstNode()) {
+                    this.first = this.first.getNext();
+                    this.first.setPrevious(null);
+                } else if (auxNode.isLastNode()){
+                    this.last = this.last.getPrevious();
+                    this.last.setNext(null);
+                } else {
+                    auxNode.getPrevious().setNext(auxNode.getNext());
+                    auxNode.getNext().setPrevious(auxNode.getPrevious());
+                }
+                return;
+            }
+            auxNode = auxNode.getNext();
+        }
+
+    }
+
+    @Override
+    public void sort(Comparator<? super T> comparator) {
+        comparator.compare(this.first.getItem(),this.last.getItem());
+
+        DequeNode<T> nodeOne = this.first;
+        DequeNode<T> nodeTwo;
+        T auxValue;
+
+        if (size()<2){
+            return;
+        }
+
+        while (nodeOne!=null) {
+            nodeTwo = nodeOne.getNext();
+            while (nodeTwo!=null){
+                if (comparator.compare(nodeOne.getItem(),nodeTwo.getItem()) >= 0 ){
+                    auxValue = nodeOne.getItem();
+                    nodeOne.setItem(nodeTwo.getItem());
+                    nodeTwo.setItem(auxValue);
+                }
+                nodeTwo = nodeTwo.getNext();
+            }
+            nodeOne = nodeOne.getNext();
+        }
+
     }
 }
