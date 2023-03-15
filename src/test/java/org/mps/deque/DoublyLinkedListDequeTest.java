@@ -32,6 +32,9 @@ import static org.junit.jupiter.api.Assertions.*;
  *          1.2.6. deletes correctly an element at the
  *              1.2.6.1. beginning
  *              1.2.6.2. end
+ *
+ * Tests de la segunda entrega:
+ *
  */
 
 public class DoublyLinkedListDequeTest {
