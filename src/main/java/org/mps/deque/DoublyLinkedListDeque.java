@@ -119,13 +119,16 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
     @Override
     public T get(int index) {
+        if (this.first == null) { // if list is empty
+            throw new DoubleEndedQueueException("The list is empty");
+        }
 
         DequeNode<T> auxNode = this.first;
 
-        if (index<0||index>=size) { // if index is out of bounds
-            throw new IndexOutOfBoundsException("The inserted index is out of the list");
+        if (index < 0 || index >= this.size()) { // if index is out of bounds
+            throw new NullPointerException("The inserted index is out of the list");
         } else { // if index is within bounds
-            for (int i=0;i<=index;i++) { // goes to the intended node
+            for (int i = 1; i <= index; i++) { // goes to the intended node
                 auxNode = auxNode.getNext();
             }
         }

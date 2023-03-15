@@ -67,7 +67,6 @@ public class DoublyLinkedListDequeTest {
                 assertEquals(expectedValue, deque.size());
             }
 
-
             @Nested
             @DisplayName("adds correctly an element at the")
             class checkAddedElements
@@ -148,8 +147,34 @@ public class DoublyLinkedListDequeTest {
                 {
                     assertThrows(DoubleEndedQueueException.class, () -> deque.deleteLast());
                 }
+
+                @Test
+                @DisplayName("checking the item of a node with get()")
+                void checkThatWhenCheckingTheValueWithGetTheExceptionIsTriggered()
+                {
+                    assertThrows(DoubleEndedQueueException.class, () -> deque.get(0));
+                }
             }
 
+            @Test
+            @DisplayName("when checking if it has an element, it returns false")
+            void checksThatItReturnsFalseWhenAskingForAnElementItMayContain()
+            {
+                assertFalse(deque.contains(1));
+            }
+
+            @Test
+            @DisplayName("when removing an element the size doesn't change")
+            void checksThatWhenAnElementIsRemoved()
+            {
+                int expectedValue = deque.size();
+
+                deque.remove(1);
+
+                int obtainedValue = deque.size();
+
+                assertEquals(expectedValue, obtainedValue);
+            }
         }
 
         @Nested
@@ -260,6 +285,141 @@ public class DoublyLinkedListDequeTest {
                     deque.deleteLast();
 
                     assertEquals(expectedValue, deque.size());
+                }
+            }
+
+            @Nested
+            @DisplayName("when using the get function")
+            class checksGetFunctionVariations
+            {
+                @Test
+                @DisplayName("the item is returned properly")
+                void checkTheItemIsReturnedProperlyWhenUsingGet()
+                {
+                    int expectedValue = 1;
+
+                    int obtainedValue = deque.get(0);
+
+                    assertEquals(expectedValue, obtainedValue);
+                }
+
+                @Test
+                @DisplayName("and a node is added, the items are returned properly")
+                void checkVariousItemsAreReturnedProperlyWhenUsingGet()
+                {
+                    int[] expectedValues = {1, 4};
+
+                    deque.append(4);
+
+                    int[] obtainedValues = {deque.get(0), deque.get(1)};
+
+                    assertArrayEquals(expectedValues, obtainedValues);
+                }
+
+                @Test
+                @DisplayName("with a negative index out of bounds, the DoubleEndedQueueException is returned")
+                void checkDoubleEndedQueueExceptionIsReturnedWithANegativeOutOfBoundsIndex()
+                {
+                    assertThrows(NullPointerException.class, () -> deque.get(-1));
+                }
+
+                @Test
+                @DisplayName("with a positive index out of bounds, the DoubleEndedQueueException is returned")
+                void checkDoubleEndedQueueExceptionIsReturnedWithAPositiveOutOfBoundsIndex()
+                {
+                    assertThrows(NullPointerException.class, () -> deque.get(1));
+                }
+            }
+
+            @Nested
+            @DisplayName("when using the contain function")
+            class checksForContainedElementsOnList
+            {
+                @Test
+                @DisplayName("it properly checks that an element is on the list")
+                void checksThatAnElementIsContainedOnTheList()
+                {
+                    assertTrue(deque.contains(1));
+                }
+
+                @Test
+                @DisplayName("it properly checks that an element is not on the list")
+                void checksThatAnElementIsNotContainedOnTheList()
+                {
+                    assertFalse(deque.contains(2));
+                }
+            }
+
+            @Nested
+            @DisplayName("when using the remove function")
+            class checksIfElementsAreRemovedProperly
+            {
+                @Test
+                @DisplayName("it removes the first element")
+                void checksIfAnElementOnTheFirstPositionIsRemovedCorrectly()
+                {
+                    deque.prepend(6);
+
+                    deque.remove(6);
+
+                    assertFalse(deque.contains(6));
+                }
+
+                @Test
+                @DisplayName("it removes an intermediate element")
+                void checksIfAnElementOnAnIntermediatePositionIsRemovedCorrectly()
+                {
+                    deque.append(6);
+                    deque.append(7);
+
+                    deque.remove(6);
+
+                    assertFalse(deque.contains(6));
+                }
+
+                @Test
+                @DisplayName("it removes the last element")
+                void checksIfAnElementOnTheLastPositionIsRemovedCorrectly()
+                {
+                    deque.append(6);
+
+                    deque.remove(6);
+
+                    assertFalse(deque.contains(6));
+                }
+            }
+
+            @Nested
+            @DisplayName("when using the sort function")
+            class checkIfElementsGetSortedProperly
+            {
+                @Test
+                @DisplayName("a list with one element does not change")
+                void checkIfListIsOneElementIsSortedProperly()
+                {
+                    deque.sort((a, b) -> a.compareTo(b));
+
+                    int expectedValue = deque.get(0);
+                    int obtainedValue = deque.first();
+
+                    assertEquals(expectedValue, obtainedValue);
+                }
+
+                @Test
+                @DisplayName("a list with 2 or more elements gets sorted properly")
+                void checkIfListWithTwoOrMoreElementsIsSortedProperly()
+                {
+                    deque.prepend(2);
+                    deque.append(4);
+                    deque.prepend(7);
+                    deque.append(8);
+
+                    deque.sort((a, b) -> a.compareTo(b));
+
+                    int expectedValue = deque.get(4);
+                    int obtainedValue = deque.last();
+
+                    assertEquals(expectedValue, obtainedValue);
                 }
             }
         }
