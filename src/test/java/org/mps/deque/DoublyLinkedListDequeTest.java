@@ -416,6 +416,8 @@ public class DoublyLinkedListDequeTest {
 
                     deque.sort((a, b) -> a.compareTo(b));
 
+
+
                     int expectedValue = deque.get(4);
                     int obtainedValue = deque.last();
 
