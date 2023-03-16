@@ -49,7 +49,6 @@ public class DoublyLinkedListDequeTest {
         /**
          * To avoid redundancy, in these tests the word "size" exclusively implies the number of elements that are on the list the tests are working with
          */
-
         @Nested
         @DisplayName("Given an empty list")
         class checkIfAnEmptyList {
