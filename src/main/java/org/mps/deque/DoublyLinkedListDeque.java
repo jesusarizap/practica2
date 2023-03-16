@@ -125,10 +125,10 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
         DequeNode<T> auxNode = this.first;
 
-        if (index < 0 || index >= this.size()) { // if index is out of bounds
-            throw new NullPointerException("The inserted index is out of the list");
+        if (index < 0 || index > this.size()-1) { // if index is out of bounds
+            throw new IndexOutOfBoundsException("The inserted index is out of the list");
         } else { // if index is within bounds
-            for (int i = 1; i <= index; i++) { // goes to the intended node
+            for (int i = 0; i < index; i++) { // goes to the intended node
                 auxNode = auxNode.getNext();
             }
         }
