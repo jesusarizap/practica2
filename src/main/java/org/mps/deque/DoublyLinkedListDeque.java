@@ -159,7 +159,10 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
         while(auxNode!=null) { // while actual node is not null
             if (auxNode.getItem().equals(value)){ // if the value is the same
-                if (auxNode.isFirstNode()) {
+                if (auxNode.isFirstNode() && auxNode.isLastNode()) {
+                    this.first = null;
+                    this.last = null;
+                }else if (auxNode.isFirstNode()) {
                     this.first = this.first.getNext();
                     this.first.setPrevious(null);
                 } else if (auxNode.isLastNode()){

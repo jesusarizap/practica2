@@ -392,9 +392,9 @@ public class DoublyLinkedListDequeTest {
                 {
                     int expectedValue = deque.size()-1;
 
-                    //deque.remove(1);
+                    deque.remove(1);
 
-                    int obtainedValue = deque.size()-1;
+                    int obtainedValue = deque.size();
 
                     assertEquals(expectedValue, obtainedValue);
                 }
@@ -403,9 +403,9 @@ public class DoublyLinkedListDequeTest {
                 @DisplayName("then it is no longer contained on the list")
                 void checksIfTheRemovalOfTheElementCorrectlyMakesItNotBeOnTheList()
                 {
-                    //deque.remove(1);
+                    deque.remove(1);
 
-                    assertFalse(!deque.contains(1));
+                    assertFalse(deque.contains(1));
                 }
             }
 
