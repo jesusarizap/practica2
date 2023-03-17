@@ -51,7 +51,7 @@ public class DoublyLinkedListDequeTest {
          */
         @Nested
         @DisplayName("Given an empty list")
-        class checkIfAnEmptyList {
+        class checkGivenAnEmptyList {
 
             @BeforeEach
             void setup() {
@@ -65,7 +65,7 @@ public class DoublyLinkedListDequeTest {
 
             @Test
             @DisplayName("when the size of the list is checked then it returns 0 (as in there are no elements on the list)")
-            void checkThatAnEmptyListHasSizeZero()
+            void checkWhenSizeCheckedThenTheSizeIsZero()
             {
                 int expectedValue = 0;
                 int obtainedValue = deque.size();
@@ -75,11 +75,11 @@ public class DoublyLinkedListDequeTest {
 
             @Nested
             @DisplayName("when an element is added at the")
-            class checkAddedElements
+            class checkWhenAddedElements
             {
                 @Test
                 @DisplayName("beginning then the element is added properly as the first one")
-                void checkAddedElementAtTheBeginning()
+                void checkAtTheBeginningThenIsTheFirstOne()
                 {
                     int expectedValue = 1;
 
@@ -92,7 +92,7 @@ public class DoublyLinkedListDequeTest {
 
                 @Test
                 @DisplayName("beginning then the size of the list increments by one")
-                void checkSizeForAddedElementAtTheBeginning()
+                void checkAtTheBeginningThenSizeIncrementsOne()
                 {
                     int expectedValue = deque.size()+1;
 
@@ -105,7 +105,7 @@ public class DoublyLinkedListDequeTest {
 
                 @Test
                 @DisplayName("end then the element is added properly as the last one")
-                void checkAddedElementAtTheEnd()
+                void checkAtTheEndThenIsTheLastOne()
                 {
                     int expectedValue = 1;
 
@@ -118,7 +118,7 @@ public class DoublyLinkedListDequeTest {
 
                 @Test
                 @DisplayName("end then the size of the list increments by one")
-                void checkSizeForAddedElementAtTheEnd()
+                void checkAtTheEndThenSizeIncrementsOne()
                 {
                     int expectedValue = deque.size()+1;
 
@@ -132,18 +132,18 @@ public class DoublyLinkedListDequeTest {
 
             @Nested
             @DisplayName("when checking for exceptions and")
-            class checkReturnsOfDoubleEndedQueueExceptions
+            class checkWhenCheckingForDoubleEndedQueueExceptions
             {
                 @Test
                 @DisplayName("looking for the first element of the list then the returned exception is DoubleEndedQueueException")
-                void checkThatAnEmptyListDoesntHaveFirstElement()
+                void checkThatAnEmptyListThenItDoesNotHaveFirstElement()
                 {
                     assertThrows(DoubleEndedQueueException.class, () -> deque.first());
                 }
 
                 @Test
                 @DisplayName("looking for the last element of the list then the returned exception is DoubleEndedQueueException")
-                void checkThatAnEmptyListDoesntHaveLastElement()
+                void checkThatAnEmptyListThenItDoesNotHaveLastElement()
                 {
                     assertThrows(DoubleEndedQueueException.class, () -> deque.last());
                 }
@@ -352,14 +352,14 @@ public class DoublyLinkedListDequeTest {
                 @DisplayName("and that position is a negative index out of bounds then the IndexOutOfBoundsException is returned")
                 void checkIndexOutOfBoundsExceptionIsReturnedWithANegativeOutOfBoundsIndex()
                 {
-                    assertThrows(IndexOutOfBoundsException.class, () -> deque.get(-1));
+                    assertThrows(DoubleEndedQueueException.class, () -> deque.get(-1));
                 }
 
                 @Test
                 @DisplayName("and that position is a positive index out of bounds, the IndexOutOfBoundsException is returned")
                 void checkIndexOutOfBoundsExceptionIsReturnedWithAPositiveOutOfBoundsIndex()
                 {
-                    assertThrows(IndexOutOfBoundsException.class, () -> deque.get(1));
+                    assertThrows(DoubleEndedQueueException.class, () -> deque.get(1));
                 }
             }
 

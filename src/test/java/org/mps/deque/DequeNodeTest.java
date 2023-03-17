@@ -29,7 +29,7 @@ public class DequeNodeTest {
     DequeNode<Integer> nodo;
 
     @Nested
-    @DisplayName("Test cases for the DequeNode implementation that checks if")
+    @DisplayName("Test cases for the DequeNode implementation that given a node")
     class testCasesThatCheckDequeNodeFunctions {
 
         @BeforeEach
@@ -43,10 +43,10 @@ public class DequeNodeTest {
         }
 
         @Nested
-        @DisplayName("a created node stores properly its")
+        @DisplayName("when checking for a created node its")
         class testCasesThatCheckDequeNodeCreation {
             @Test
-            @DisplayName("item")
+            @DisplayName("item then it is returned properly and gets stored properly")
             void checksIfItemIsStoredProperly() {
                 int expectedItem = 1;
 
@@ -56,7 +56,7 @@ public class DequeNodeTest {
             }
 
             @Test
-            @DisplayName("previous node")
+            @DisplayName("previous node then it is returned properly and gets stored properly")
             void checkfsIfPreviousNodeIsStoredProperly() {
                 DequeNode<Integer> expectedPreviousNode = null;
 
@@ -66,7 +66,7 @@ public class DequeNodeTest {
             }
 
             @Test
-            @DisplayName("next node")
+            @DisplayName("next node then it is returned properly and gets stored properly")
             void checkfsIfNextNodeIsStoredProperly() {
                 DequeNode<Integer> expectedNextNode = null;
 
@@ -77,10 +77,10 @@ public class DequeNodeTest {
         }
 
         @Nested
-        @DisplayName("a node can have properly changed with setters its")
+        @DisplayName("when changing for a node its")
         class testCasesThatCheckDequeNodeSetters {
             @Test
-            @DisplayName("item")
+            @DisplayName("item then it gets changed properly")
             void checksIfItemIsSetProperly() {
                 nodo.setItem(2);
 
@@ -90,7 +90,7 @@ public class DequeNodeTest {
             }
 
             @Test
-            @DisplayName("previous node")
+            @DisplayName("previous node then it gets changed properly")
             void checksIfPreviousNodeIsSetProperly() {
                 DequeNode<Integer> expectedPreviousNode = new DequeNode<>(1, null, null);
 
@@ -100,7 +100,7 @@ public class DequeNodeTest {
             }
 
             @Test
-            @DisplayName("next node")
+            @DisplayName("next node then it gets changed properly")
             void checksIfNextNodeIsSetProperly() {
                 DequeNode<Integer> expectedNextNode = new DequeNode<>(1, null, null);
 
@@ -111,16 +111,16 @@ public class DequeNodeTest {
         }
 
         @Nested
-        @DisplayName("the position of a node is checked correctly when")
+        @DisplayName("when the position of the node is checked properly and")
         class testCasesThatCheckForNodesPosition {
             @Test
-            @DisplayName("it is the first node")
+            @DisplayName("it is the first node then it gives back that it is the first node")
             void checkIfTheSupposedlyFirstNodeIsActuallyTheFirstNode() {
                 assertTrue(nodo.isFirstNode());
             }
 
             @Test
-            @DisplayName("it is the last node")
+            @DisplayName("it is the last node then it gives back that it is the last node")
             void checkIfTheSupposedlyLastNodeIsActuallyTheLastNode() {
                 DequeNode<Integer> lastNode = new DequeNode<>(1, null, null);
 
@@ -134,14 +134,14 @@ public class DequeNodeTest {
             class testCasesThatCheckIfTheNodeIsTerminal
             {
                 @Test
-                @DisplayName("first node")
+                @DisplayName("first node then it gives back that it is the first node")
                 void checkIfTheFirstNodeIsATerminalNode()
                 {
                     assertFalse(nodo.isNotATerminalNode());
                 }
 
                 @Test
-                @DisplayName("last node")
+                @DisplayName("last node then it gives back that it is the last node")
                 void checkIfTheLastNodeIsATerminalNode()
                 {
                     DequeNode<Integer> notTerminalNode = new DequeNode<>(1, null, null);
@@ -154,7 +154,7 @@ public class DequeNodeTest {
             }
 
             @Test
-            @DisplayName("it is not a terminal node")
+            @DisplayName("it is not a terminal node then it gives back that it is not a terminal node")
             void checkIfTheSupposedlyNotTerminalNodeIsActuallyANotTerminalNode() {
                 DequeNode<Integer> notTerminalNode = new DequeNode<>(1, null, null);
                 DequeNode<Integer> lastNode = new DequeNode<>(1, null, null);
