@@ -10,32 +10,69 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Nicolás Lerible
  * @author Jesús Ariza
  * Casos de prueba para DoublyLinkedListDeque():
- *  1. Test cases for the DoublyLinkedListDeque implementation that checks if
- *      1.1. an empty list
- *          1.1.2. has size 0
- *          1.1.3. adds correctly an element at the
- *              1.1.3.1. beginning
- *              1.1.3.2. beginning and increments its size
- *              1.1.3.3. end
- *              1.1.3.4. end and increments its size
- *          1.1.4. returns DoubleEndedQueueException when
- *              1.1.4.1. throws an exception when looking for the first element
- *              1.1.4.2. throws an exception when looking for the last element
- *              1.1.4.3. deleteFirst()
- *              1.1.4.4. deleteLast()
- *      1.2. a list with an element
- *          1.2.1. has first element
- *          1.2.2. has last element
- *          1.2.3. returns its actual size
- *          1.2.5. adds correctly an element at the
- *              1.2.5.1. beginning
- *              1.2.5.2. beginning and increments its size
- *              1.2.5.3. end
- *              1.2.5.4. end and increments its size
- *          1.2.6. deletes correctly an element at the
- *              1.2.6.1. beginning
- *              1.2.6.2. end
- * Tests de la segunda entrega:
+ *  Test cases for the DoublyLinkedListDeque implementation
+ * 1. Given an empty list
+ * 	1.1. when the size of the list is checked then it returns 0 (as in there are no elements on the list)
+ * 	1.2. when an element is added at the
+ * 		1.2.1. beginning then the element is added properly as the first one
+ * 		1.2.2. beginning then the size of the list increments by one
+ * 		1.2.3. end then the element is added properly as the last one
+ * 		1.2.4. end then the size of the list increments by one
+ * 	1.3. when checking for exceptions and
+ * 		1.3.1. looking for the first element of the list then the returned exception is DoubleEndedQueueException
+ * 		1.3.2. looking for the last element of the list then the returned exception is DoubleEndedQueueException
+ * 		1.3.3. the first element of the list is deleted then the returned exception is DoubleEndedQueueException
+ * 		1.3.4. the last element of the list is deleted then the returned exception is DoubleEndedQueueException
+ * 		1.3.5. there is a check for an element in a given position then the returned exception is DoubleEndedQueueException)
+ * 	1.4. when checking if the list contains a specific element then it gives back that it does not have it
+ * 	1.5. when removing an element from the list then the size of the list does not change
+ * 2. Given a list with an element
+ * 	2.1. when checking if it has a first element then it returns its only element
+ * 	2.2. when checking if it has a last element then it returns its only element
+ * 	2.3. when the size of the list is checked then it returns one (as in it only has one element)
+ * 	2.4. when adding an element to the list then it returns the previous size of the list incremented by one
+ * 	2.5. when adding an element at the
+ * 		2.5.1. beginning then it is added properly as the first one and the original element is now only the last one
+ * 		2.5.2. end then it is added properly as the last one and the original element is now only the first one
+ * 	2.6. when an element is deleted from the list at the
+ * 		2.6.1. beginning then the size of the list decreases by one
+ * 		2.6.2. end then the size of the list decreases by one
+ * 	2.7. when looking for the element in a given position (index)
+ * 		2.7.1. and checking the first position then the returned element is its only element
+ * 		2.7.2. and that position is a negative index out of bounds then the IndexOutOfBoundsException is returned
+ * 		2.7.3. and a node is added then both positions of the elements return those elements
+ * 		2.7.4. and that position is a positive index out of bounds, the IndexOutOfBoundsException is returned
+ * 	2.8. when checking if the list contains the element
+ * 		2.8.1. and the element is on the list then it returns that the list has the element
+ * 		2.8.2. and the element is not on the list then it returns that the list does not have the element
+ * 	2.9. when removing the element from the list
+ * 		2.9.1. then the size of the list decreases by one
+ * 		2.9.2. then it is no longer contained on the list
+ * 	2.10. when sorting the elements of the list
+ * 		2.10.1 then the list does not change
+ * 		2.10.2 and adding 2 or more elements, then the elements gets sorted properly
+ * 3. Given a list with multiple elements
+ * 	3.1. when checking its first element then it returns the expected first element (1 in this case)
+ * 	3.2. when checking its last element then it returns the expected last element (3 in this case)
+ * 	3.3. when the size of the list is checked then it returns its expected size (3 in this case)
+ * 	3.4. when adding an element at the
+ * 		3.4.1. beginning then it is added properly as the first one and the original first element is now the second one
+ * 		3.4.2. beginning then it returns the previous size of the list incremented by one
+ * 		3.4.3. end then it is added properly as the last one and the original last element is now second to last
+ * 		3.4.4. end then it returns the previous size of the list incremented by one
+ * 	3.5. when an element is deleted from the list at the
+ * 		3.5.1. beginning then the size of the list decreases by one and the second element is now the first one
+ * 		3.5.2. and then the size of the list decreases by one and the second to last is now the last element
+ * 	3.6. when looking for the element in a given position (index)
+ * 		3.6.1. and checking the first position then the returned element is the expected first element (1 in this case)
+ * 		3.6.2. and a node is added then all the positions of the elements return each of the elements
+ * 	3.7. when removing an element from the list
+ * 		3.7.1. and the removed element is the first one then the size of the list decreases by one and the second element is the first one
+ * 		3.7.2. and the removed element is an intermediate element the size of the list decreases by one
+ * 		3.7.3. and the removed element is the last one then size of the list decreases by one and the second to last element is the last one
+ * 	3.8. when sorting the elements of the list
+ * 		3.8.1. on reverse order then the elements gets sorted properly
+ * 		3.8.2 on natural order then the elements stay on the same position (the list has the elements already in order)
  */
 
 public class DoublyLinkedListDequeTest {
@@ -136,35 +173,35 @@ public class DoublyLinkedListDequeTest {
             {
                 @Test
                 @DisplayName("looking for the first element of the list then the returned exception is DoubleEndedQueueException")
-                void checkThatAnEmptyListThenItDoesNotHaveFirstElement()
+                void checkThenThatAnEmptyListDoesNotHaveFirstElement()
                 {
                     assertThrows(DoubleEndedQueueException.class, () -> deque.first());
                 }
 
                 @Test
                 @DisplayName("looking for the last element of the list then the returned exception is DoubleEndedQueueException")
-                void checkThatAnEmptyListThenItDoesNotHaveLastElement()
+                void checkThenThatAnEmptyListThenItDoesNotHaveLastElement()
                 {
                     assertThrows(DoubleEndedQueueException.class, () -> deque.last());
                 }
 
                 @Test
                 @DisplayName("the first element of the list is deleted then the returned exception is DoubleEndedQueueException")
-                void checkThatWhenUsingDeleteFirstTheExceptionIsTriggered()
+                void checkThatWhenUsingDeleteFirstThenTheExceptionIsTriggered()
                 {
                     assertThrows(DoubleEndedQueueException.class, () -> deque.deleteFirst());
                 }
 
                 @Test
                 @DisplayName("the last element of the list is deleted then the returned exception is DoubleEndedQueueException")
-                void checkThatWhenUsingDeleteLastTheExceptionIsTriggered()
+                void checkThatWhenUsingDeleteLastThenTheExceptionIsTriggered()
                 {
                     assertThrows(DoubleEndedQueueException.class, () -> deque.deleteLast());
                 }
 
                 @Test
                 @DisplayName("there is a check for an element in a given position then the returned exception is DoubleEndedQueueException)")
-                void checkThatWhenCheckingTheValueWithGetTheExceptionIsTriggered()
+                void checkThatWhenCheckingTheValueWithGetThenTheExceptionIsTriggered()
                 {
                     assertThrows(DoubleEndedQueueException.class, () -> deque.get(0));
                 }
@@ -172,14 +209,14 @@ public class DoublyLinkedListDequeTest {
 
             @Test
             @DisplayName("when checking if the list contains a specific element then it gives back that it does not have it")
-            void checksThatItReturnsFalseWhenAskingForAnElementItMayContain()
+            void checksWhenAskingForAnElementItMayContainThenItReturnsFalse()
             {
                 assertFalse(deque.contains(1));
             }
 
             @Test
             @DisplayName("when removing an element from the list then the size of the list does not change")
-            void checksThatWhenAnElementIsRemoved()
+            void checksThatWhenAnElementIsRemovedThenSizeDoesNotChange()
             {
                 int expectedValue = deque.size();
 
@@ -208,7 +245,7 @@ public class DoublyLinkedListDequeTest {
 
             @Test
             @DisplayName("when checking if it has a first element then it returns its only element")
-            void checkIfTheListHasAFirstElement()
+            void checkWhenCheckingIfTheListHasAFirstElementThenItReturnsItsOnlyElement()
             {
                 int expectedValue = 1;
                 int obtainedValue = deque.first();
@@ -218,7 +255,7 @@ public class DoublyLinkedListDequeTest {
 
             @Test
             @DisplayName("when checking if it has a last element then it returns its only element")
-            void checkIfTheListHasALastElement()
+            void checkWhenCheckingIfTheListHasALastElementThenItReturnsItsOnlyElement()
             {
                 int expectedValue = 1;
                 int obtainedValue = deque.last();
@@ -228,7 +265,7 @@ public class DoublyLinkedListDequeTest {
 
             @Test
             @DisplayName("when the size of the list is checked then it returns one (as in it only has one element)")
-            void checkIfTheSizeIsCorrect()
+            void checkWhenTheSizeIsCheckedThenItReturnsOne()
             {
                 int expectedValue = 1;
                 int obtainedValue = deque.size();
@@ -238,7 +275,7 @@ public class DoublyLinkedListDequeTest {
 
             @Test
             @DisplayName("when adding an element to the list then it returns the previous size of the list incremented by one")
-            void checkIfTheSizeIsCorrectAfterAddingAnElement()
+            void checkWhenTheSizeIsCheckedAfterAddingAnElementThenItReturnsItIncremented()
             {
                 int expectedValue = 2;
 
@@ -251,11 +288,11 @@ public class DoublyLinkedListDequeTest {
 
             @Nested
             @DisplayName("when adding an element at the")
-            class checkAddedElements
+            class checkWhenAddedElements
             {
                 @Test
                 @DisplayName("beginning then it is added properly as the first one and the original element is now only the last one")
-                void checkAddedElementAtTheBeginning()
+                void checkAddedElementAtTheBeginningThenItGetsAddedAndOriginalNodeIsOnlyLastOne()
                 {
                     int expectedValueFirst = 5;
                     int expectedValueLast = 1;
@@ -271,7 +308,7 @@ public class DoublyLinkedListDequeTest {
 
                 @Test
                 @DisplayName("end then it is added properly as the last one and the original element is now only the first one")
-                void checkAddedElementAtTheEnd()
+                void checkAddedElementAtTheEndThenItGetsAddedAndOriginalNodeIsOnlyFirstOne()
                 {
                     int expectedValueLast = 5;
                     int expectedValueFirst = 1;
@@ -288,11 +325,11 @@ public class DoublyLinkedListDequeTest {
 
             @Nested
             @DisplayName("when an element is deleted from the list at the")
-            class checkDeletedElements
+            class checkWhenDeletedElements
             {
                 @Test
                 @DisplayName("beginning then the size of the list decreases by one")
-                void checkDeletedElementAtTheBeginning()
+                void checkDeletedElementAtTheBeginningThenSizeDecreasesOne()
                 {
                     deque.append(1);
 
@@ -307,7 +344,7 @@ public class DoublyLinkedListDequeTest {
 
                 @Test
                 @DisplayName("end then the size of the list decreases by one")
-                void checkDeletedElementAtTheLast()
+                void checkDeletedElementAtTheEndThenSizeDecreasesOne()
                 {
                     deque.append(1);
 
@@ -323,11 +360,11 @@ public class DoublyLinkedListDequeTest {
 
             @Nested
             @DisplayName("when looking for the element in a given position (index)")
-            class checksGetFunctionVariations
+            class checksWhenGetFunctionVariations
             {
                 @Test
                 @DisplayName("and checking the first position then the returned element is its only element")
-                void checkTheItemIsReturnedProperlyWhenUsingGet()
+                void checkTheItemAndIsFirstPositionThenIsReturnedProperly()
                 {
                     int expectedValue = 1;
                     int obtainedValue = deque.get(0);
@@ -336,8 +373,15 @@ public class DoublyLinkedListDequeTest {
                 }
 
                 @Test
+                @DisplayName("and that position is a negative index out of bounds then the IndexOutOfBoundsException is returned")
+                void checkANegativeIndexOutOfBoundsThenDoubleEndedQueueExceptionIsReturned()
+                {
+                    assertThrows(DoubleEndedQueueException.class, () -> deque.get(-1));
+                }
+
+                @Test
                 @DisplayName("and a node is added then both positions of the elements return those elements")
-                void checkVariousItemsAreReturnedProperlyWhenUsingGet()
+                void checkVariousItemsPositionsThenAreReturnedProperly()
                 {
                     int[] expectedValues = {1, 4};
 
@@ -349,15 +393,8 @@ public class DoublyLinkedListDequeTest {
                 }
 
                 @Test
-                @DisplayName("and that position is a negative index out of bounds then the IndexOutOfBoundsException is returned")
-                void checkIndexOutOfBoundsExceptionIsReturnedWithANegativeOutOfBoundsIndex()
-                {
-                    assertThrows(DoubleEndedQueueException.class, () -> deque.get(-1));
-                }
-
-                @Test
                 @DisplayName("and that position is a positive index out of bounds, the IndexOutOfBoundsException is returned")
-                void checkIndexOutOfBoundsExceptionIsReturnedWithAPositiveOutOfBoundsIndex()
+                void checkPositiveIndexOutOfBoundsThenDoubleEndedQueueExceptionIsReturned()
                 {
                     assertThrows(DoubleEndedQueueException.class, () -> deque.get(1));
                 }
@@ -365,18 +402,18 @@ public class DoublyLinkedListDequeTest {
 
             @Nested
             @DisplayName("when checking if the list contains the element")
-            class checksForContainedElementsOnList
+            class checkWhenForContainedElementsOnList
             {
                 @Test
                 @DisplayName("and the element is on the list then it returns that the list has the element")
-                void checksThatAnElementIsContainedOnTheList()
+                void checkAnElementThatIsContainedThenItReturnsThatItIsOnTheList()
                 {
                     assertTrue(deque.contains(1));
                 }
 
                 @Test
                 @DisplayName("and the element is not on the list then it returns that the list does not have the element")
-                void checksThatAnElementIsNotContainedOnTheList()
+                void checkAnElementThatIsNotContainedThenItReturnsThatItIsNotOnTheList()
                 {
                     assertFalse(deque.contains(2));
                 }
@@ -384,11 +421,11 @@ public class DoublyLinkedListDequeTest {
 
             @Nested
             @DisplayName("when removing the element from the list")
-            class checksIfElementsAreRemovedProperly
+            class checkWhenIfElementsAreRemovedProperly
             {
                 @Test
                 @DisplayName("then the size of the list decreases by one")
-                void checksIfTheRemovalOfTheElementCorrectlyShowADecreaseOfTheSizeOfTheList()
+                void checkIfTheRemovalOfTheElementCorrectlyThenItShowsADecreaseOfTheSizeOfTheList()
                 {
                     int expectedValue = deque.size()-1;
 
@@ -401,7 +438,7 @@ public class DoublyLinkedListDequeTest {
 
                 @Test
                 @DisplayName("then it is no longer contained on the list")
-                void checksIfTheRemovalOfTheElementCorrectlyMakesItNotBeOnTheList()
+                void checkIfTheRemovalOfTheElementCorrectlyMakesThenItMakesItNotBeOnTheList()
                 {
                     deque.remove(1);
 
@@ -411,11 +448,11 @@ public class DoublyLinkedListDequeTest {
 
             @Nested
             @DisplayName("when sorting the elements of the list")
-            class checkIfElementsGetSortedProperly
+            class checkWhenIfElementsGetSortedProperly
             {
                 @Test
                 @DisplayName("then the list does not change")
-                void checkIfListIsOneElementIsSortedProperly()
+                void checkIfListIsOneElementThenItDoesNotChange()
                 {
                     deque.sort(Comparator.naturalOrder());
 
@@ -427,7 +464,7 @@ public class DoublyLinkedListDequeTest {
 
                 @Test
                 @DisplayName("and adding 2 or more elements then the elements gets sorted properly")
-                void checkIfListWithTwoOrMoreElementsIsSortedProperly()
+                void checkIfListWithTwoOrMoreElementsThenIsSortedProperly()
                 {
                     deque.prepend(2);
                     deque.append(4);
@@ -446,7 +483,7 @@ public class DoublyLinkedListDequeTest {
 
         @Nested
         @DisplayName("Given a list with multiple elements")
-        class checkIfAListWithMultipleElements
+        class checkGivenAListWithMultipleElements
         {
             @BeforeEach
             void setup() {
@@ -463,7 +500,7 @@ public class DoublyLinkedListDequeTest {
 
             @Test
             @DisplayName("when checking its first element then it returns the expected first element (1 in this case)")
-            void checkIfTheListHasAFirstElement()
+            void checkWhenCheckingIfTheListHasAFirstElementThenItReturnsTheExpectedValue()
             {
                 int expectedValue = 1;
                 int obtainedValue = deque.first();
@@ -473,7 +510,7 @@ public class DoublyLinkedListDequeTest {
 
             @Test
             @DisplayName("when checking its last element then it returns the expected last element (3 in this case)")
-            void checkIfTheListHasALastElement()
+            void checkWhenCheckingIfTheListHasALastElementThenItReturnsTheExpectedValue()
             {
                 int expectedValue = 3;
                 int obtainedValue = deque.last();
@@ -483,7 +520,7 @@ public class DoublyLinkedListDequeTest {
 
             @Test
             @DisplayName("when the size of the list is checked then it returns its expected size (3 in this case)")
-            void checkIfTheSizeIsCorrect()
+            void checkWhenTheSizeIsCheckedThenItReturnsTheExpectedSize()
             {
                 int expectedValue = 3;
                 int obtainedValue = deque.size();
@@ -491,26 +528,13 @@ public class DoublyLinkedListDequeTest {
                 assertEquals(expectedValue, obtainedValue);
             }
 
-            @Test
-            @DisplayName("when adding an element to the list then it returns the previous size of the list incremented by one")
-            void checkIfTheSizeIsCorrectAfterAddingAnElement()
-            {
-                int expectedValue = deque.size()+1;
-
-                deque.append(4);
-
-                int obtainedValue = deque.size();
-
-                assertEquals(expectedValue, obtainedValue);
-            }
-
             @Nested
             @DisplayName("when adding an element at the")
-            class checkAddedElements
+            class checkWhenAddedElements
             {
                 @Test
                 @DisplayName("beginning then it is added properly as the first one and the original first element is now the second one")
-                void checkAddedElementAtTheBeginning()
+                void checkAddedElementAtTheBeginningThenFirstAndOriginalSecondOne()
                 {
                     int expectedValueFirst = 4;
                     int expectedValueSecond = deque.first();
@@ -522,8 +546,21 @@ public class DoublyLinkedListDequeTest {
                 }
 
                 @Test
+                @DisplayName("beginning then it returns the previous size of the list incremented by one")
+                void checkAddedElementAtTheBeginningThenSizeIncreasesOne()
+                {
+                    int expectedValue = deque.size()+1;
+
+                    deque.prepend(4);
+
+                    int obtainedValue = deque.size();
+
+                    assertEquals(expectedValue, obtainedValue);
+                }
+
+                @Test
                 @DisplayName("end then it is added properly as the last one and the original last element is now second to last")
-                void checkAddedElementAtTheEnd()
+                void checkAddedElementAtTheEndThenLastAndOriginalSecondToLast()
                 {
                     int expectedValueLast = 4;
                     int expectedValueSecondToLast = deque.last();
@@ -533,15 +570,28 @@ public class DoublyLinkedListDequeTest {
                     assertEquals(expectedValueLast, deque.last());
                     assertEquals(expectedValueSecondToLast, deque.get(2));
                 }
+
+                @Test
+                @DisplayName("end then it returns the previous size of the list incremented by one")
+                void checkWhenAddedElementAtTheEndThenSizeIncreasesOne()
+                {
+                    int expectedValue = deque.size()+1;
+
+                    deque.append(4);
+
+                    int obtainedValue = deque.size();
+
+                    assertEquals(expectedValue, obtainedValue);
+                }
             }
 
             @Nested
             @DisplayName("when an element is deleted from the list at the")
-            class checkDeletedElements
+            class checkWhenDeletedElements
             {
                 @Test
                 @DisplayName("beginning then the size of the list decreases by one and the second element is now the first one")
-                void checkDeletedElementAtTheBeginning()
+                void checkDeletedElementAtTheBeginningThenSizeOfListDecreasesOne()
                 {
                     int expectedValue = deque.size()-1;
 
@@ -555,7 +605,7 @@ public class DoublyLinkedListDequeTest {
 
                 @Test
                 @DisplayName("and then the size of the list decreases by one and the second to last is now the last element")
-                void checkDeletedElementAtTheLast()
+                void checkDeletedElementAtTheLastThenSizeOfListDecreasesOne()
                 {
                     int expectedValue = deque.size()-1;
 
@@ -570,11 +620,11 @@ public class DoublyLinkedListDequeTest {
 
             @Nested
             @DisplayName("when looking for the element in a given position (index)")
-            class checksGetFunctionVariations
+            class checksWhenGetFunctionVariations
             {
                 @Test
                 @DisplayName("and checking the first position then the returned element is the expected first element (1 in this case)")
-                void checkTheItemIsReturnedProperlyWhenUsingGet()
+                void checkTheFirstItemIsFirstPositionThenIsReturnedProperly()
                 {
                     int expectedValue = 1;
                     int obtainedValue = deque.get(0);
@@ -584,7 +634,7 @@ public class DoublyLinkedListDequeTest {
 
                 @Test
                 @DisplayName("and a node is added then all the positions of the elements return each of the elements")
-                void checkVariousItemsAreReturnedProperlyWhenUsingGet()
+                void checkVariousItemsPositionsThenAreReturnedProperly()
                 {
                     deque.append(4);
 
@@ -598,11 +648,11 @@ public class DoublyLinkedListDequeTest {
 
             @Nested
             @DisplayName("when removing an element from the list")
-            class checksIfElementsAreRemovedProperly
+            class checksWhenElementsAreRemovedProperly
             {
                 @Test
                 @DisplayName("and the removed element is the first one then the size of the list decreases by one and the second element is the first one")
-                void checksIfAnElementOnTheFirstPositionIsRemovedCorrectly()
+                void checksAnElementOnTheFirstPositionThenItIsRemovedCorrectly()
                 {
                     int expectedValue = deque.size()-1;
 
@@ -616,7 +666,7 @@ public class DoublyLinkedListDequeTest {
 
                 @Test
                 @DisplayName("and the removed element is an intermediate element the size of the list decreases by one")
-                void checksIfAnElementOnAnIntermediatePositionIsRemovedCorrectly()
+                void checksAnElementOnAnIntermediatePositionThenItIsRemovedCorrectly()
                 {
                     int expectedValue = deque.size()-1;
 
@@ -627,7 +677,7 @@ public class DoublyLinkedListDequeTest {
 
                 @Test
                 @DisplayName("and the removed element is the last one then size of the list decreases by one and the second to last element is the last one")
-                void checksIfAnElementOnTheLastPositionIsRemovedCorrectly()
+                void checksAnElementOnTheLastPositionThenItIsRemovedCorrectly()
                 {
                     int expectedValue = deque.size()-1;
 
@@ -642,11 +692,11 @@ public class DoublyLinkedListDequeTest {
 
             @Nested
             @DisplayName("when sorting the elements of the list")
-            class checkIfElementsGetSortedProperly
+            class checkWhenElementsGetSortedProperly
             {
                 @Test
                 @DisplayName("on reverse order then the elements gets sorted properly")
-                void checkIfListWithReverseOrderComparatorGetsSortedProperly()
+                void checkListWithReverseOrderComparatorThenItGetsSortedProperly()
                 {
                     deque.sort(Comparator.reverseOrder());
 
@@ -658,7 +708,7 @@ public class DoublyLinkedListDequeTest {
 
                 @Test
                 @DisplayName("on natural order then the elements stay on the same position (the list has the elements already in order)")
-                void checkIfListWithNaturalOrderComparatorGetsSortedProperly()
+                void checkListWithNaturalOrderComparatorThenItGetsSortedProperly()
                 {
                     deque.sort(Comparator.naturalOrder());
 
