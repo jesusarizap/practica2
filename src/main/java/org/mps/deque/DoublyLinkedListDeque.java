@@ -104,7 +104,7 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
     @Override
     public int size() {
-        if (this.first==null && this.last==null){
+        if (this.first==null){
             return 0;
         } else {
             DequeNode<T> movingNode = this.first;
