@@ -104,11 +104,11 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
     @Override
     public int size() {
-        if (this.first==null){
+        if (this.first==null && this.last==null){
             return 0;
         } else {
             DequeNode<T> movingNode = this.first;
-            int contador=1;
+            int contador = 1;
             while (movingNode.getNext()!=null){
                 movingNode = movingNode.getNext();
                 contador++;
@@ -126,7 +126,7 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
         DequeNode<T> auxNode = this.first;
 
         if (index < 0 || index > this.size()-1) { // if index is out of bounds
-            throw new IndexOutOfBoundsException("The inserted index is out of the list");
+            throw new DoubleEndedQueueException("The inserted index is out of the list");
         } else { // if index is within bounds
             for (int i = 0; i < index; i++) { // goes to the intended node
                 auxNode = auxNode.getNext();
@@ -159,7 +159,10 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
         while(auxNode!=null) { // while actual node is not null
             if (auxNode.getItem().equals(value)){ // if the value is the same
-                if (auxNode.isFirstNode()) {
+                if (auxNode.isFirstNode() && auxNode.isLastNode()) {
+                    this.first = null;
+                    this.last = null;
+                }else if (auxNode.isFirstNode()) {
                     this.first = this.first.getNext();
                     this.first.setPrevious(null);
                 } else if (auxNode.isLastNode()){
